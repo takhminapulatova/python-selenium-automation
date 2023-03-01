@@ -1,6 +1,9 @@
-# Created by tahmina at 3/1/23
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Amazon main page tests
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: User can see hamburger menu
+    Given Open Amazon page
+    Then Verify hamburger menu icon present
+
+  Scenario: Footer has correct amount of links
+    Given Open Amazon page
+    Then Verify that footer has 42 links

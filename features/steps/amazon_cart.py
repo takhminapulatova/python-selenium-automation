@@ -2,19 +2,12 @@ from selenium.webdriver.common.by import By
 from behave import when, then
 
 
+CART_ICON = (By.ID, 'nav-cart-count-container')
+
+
 @when('Click on the cart icon')
 def click_on_cart_icon(context):
-    context.driver.find_element(By.ID, 'nav-cart-count-container').click()
-
-
-@when('Click on the first product')
-def click_on_the_first_product(context):
-    context.driver.find_element(By.CSS_SELECTOR, "div[data-index='2'][data-component-id='18']").click()
-
-
-@when('Add the product to the cart')
-def add_the_product(context):
-    context.driver.find_element(By.ID, 'add-to-cart-button').click()
+    context.driver.find_element(*CART_ICON).click()
 
 
 @then('Verify that Amazon cart is empty')

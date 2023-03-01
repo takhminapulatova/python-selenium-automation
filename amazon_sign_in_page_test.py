@@ -13,5 +13,3 @@ actual_result = driver.find_element(By.XPATH, "//h1 [@class='a-spacing-small']")
 
 assert expected_result == actual_result, f'Expected -> {expected_result} and actual -> {actual_result}'
 driver.quit()
-
-

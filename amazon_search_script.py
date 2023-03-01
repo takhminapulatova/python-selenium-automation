@@ -1,9 +1,8 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from time import sleep
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
-#driver = webdriver.Chrome(executable_path='/Users/svetlanalevinsohn/JobEasy/13-python-selenium-automation/chromedriver')
+# driver = webdriver.Chrome(executable_path='/Users/svetlanalevinsohn/JobEasy/13-python-selenium-automation/chromedriver')
 service = Service('/Users/tahmina/Desktop/Careerist/python-selenium-automation/chromedriver')
 driver = webdriver.Chrome(service=service)
 

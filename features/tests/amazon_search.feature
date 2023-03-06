@@ -16,3 +16,9 @@ Feature: Amazon search tests
     When Input text table
     When Click on search button
     Then Verify that text "table" is shown
+
+  Scenario: Every product has a name and an image
+    Given Open Amazon page
+    When Input text coffee
+    And Click on search button
+    Then Verify that each product has a name and an image

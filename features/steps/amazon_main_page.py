@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 
 
@@ -6,6 +7,7 @@ AMAZON_SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
 SEARCH_ICON = (By.ID, 'nav-search-submit-button')
 HAM_MENU = (By. ID, 'nav-hamburger-menu')
 FOOTER_LINKS = (By.CSS_SELECTOR, "table.navFooterMoreOnAmazon td.navFooterDescItem")
+SIGN_IN_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip a.nav-action-button')
 
 
 @given('Open Amazon page')
@@ -21,6 +23,16 @@ def input_search_word(context, search_word):
 @when('Click on search button')
 def click_search(context):
     context.driver.find_element(*SEARCH_ICON).click()
+
+
+@when('Click Sign In from popup')
+def click_signin(context):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BTN)).click()
+    # Feel free to add error message if needed too, for example:
+    # context.driver.wait.until(
+    #     EC.element_to_be_clickable(SIGN_IN_BTN),
+    #     message='Sign in btn not clickable'
+    # ).click()
 
 
 @then('Verify hamburger menu icon present')

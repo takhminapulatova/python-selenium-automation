@@ -2,9 +2,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from behave import when, then
 
-@when('Click on orders')
-def click_on_orders(context):
-    context.driver.find_element(By.ID, 'nav-orders').click()
 
 @then('Verify that Sign In page is opened')
 def verify_sign_in_page(context):

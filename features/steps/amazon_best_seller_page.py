@@ -3,6 +3,7 @@ from behave import given, then
 
 
 HEADER_BS_LINKS = (By.CSS_SELECTOR, "#zg_header li")
+TITLE = (By.CSS_SELECTOR, "#zg_banner_text")
 
 
 @given('Open Best Seller page')
@@ -17,3 +18,14 @@ def verify_amount_of_links(context, expected_num):
     assert len(header_bs_links) == expected_num, f'Expected 5 links, but got {len(header_bs_links)}'
 
 
+@then('Verify that each link opens correct page')
+def verify_each_link_open_correct_page(context):
+    header_bs_links = context.driver.find_elements(*HEADER_BS_LINKS)
+    for i in range(len(header_bs_links)):
+        link = context.driver.find_elements(*HEADER_BS_LINKS)[i]
+        header_name = link.text
+        # print(header_name)
+        link.click()
+        title = context.driver.find_element(*TITLE).text
+        # print(title)
+        assert header_name in title, f'Expected header name: {header_name} is in the title: {title}'

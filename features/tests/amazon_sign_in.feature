@@ -11,3 +11,10 @@ Feature: Amazon Sign In Page
     Given Open Amazon page
     When Click Sign In from popup
     Then Verify Sign In page opens
+
+  Scenario: Sign in popup is visible for a few seconds
+    Given Open Amazon page
+    Then Verify Sign in popup shown
+    When Wait for 8 seconds
+    Then Verify Sign in popup shown
+    Then Verify Sign in popup disappears

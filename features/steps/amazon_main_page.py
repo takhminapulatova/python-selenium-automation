@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
+from time import sleep
 
 
 AMAZON_SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
@@ -8,6 +9,7 @@ SEARCH_ICON = (By.ID, 'nav-search-submit-button')
 HAM_MENU = (By. ID, 'nav-hamburger-menu')
 FOOTER_LINKS = (By.CSS_SELECTOR, "table.navFooterMoreOnAmazon td.navFooterDescItem")
 SIGN_IN_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip a.nav-action-button')
+ORDERS = (By.ID, 'nav-orders')
 
 
 @given('Open Amazon page')
@@ -25,19 +27,51 @@ def click_search(context):
     context.driver.find_element(*SEARCH_ICON).click()
 
 
+@when('Click on orders')
+def click_on_orders(context):
+    context.driver.find_element(*ORDERS).click()
+
+
 @when('Click Sign In from popup')
 def click_signin(context):
-    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BTN)).click()
-    # Feel free to add error message if needed too, for example:
-    # context.driver.wait.until(
-    #     EC.element_to_be_clickable(SIGN_IN_BTN),
-    #     message='Sign in btn not clickable'
-    # ).click()
+    context.driver.wait.until(
+        EC.element_to_be_clickable(SIGN_IN_BTN),
+        message='Sign in btn not clickable'
+    ).click()
+
+
+@when('Wait for {sec} seconds')
+def wait_for_sec(context,sec):
+    sleep(int(sec))
+
+
+@then('Verify Sign in popup shown')
+def verify_signin_popup_visible(context):
+    context.driver.wait.until(
+        EC.element_to_be_clickable(SIGN_IN_BTN),
+        message='Sign in btn not clickable'
+    )
+
+
+@then('Verify Sign in popup disappears')
+def verify_signin_disappears(context):
+    context.driver.wait.until(
+        EC.invisibility_of_element_located(SIGN_IN_BTN),
+        message='Sign in btn did not disappear'
+    )
 
 
 @then('Verify hamburger menu icon present')
 def verify_ham_menu_present(context):
-    element = context.driver.find_element(*HAM_MENU)
+    context.ham_menu = context.driver.find_element(*HAM_MENU)
+    context.driver.refresh()
+
+
+@when('Click on ham menu')
+def click_ham_menu(context):
+    context.ham_menu = context.driver.find_element(*HAM_MENU)
+    context.ham_menu.click()
+
 
 @then('Verify that footer has {expected_amount} links')
 def verify_footer_link_count(context, expected_amount):

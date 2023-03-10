@@ -23,5 +23,5 @@ def verify_product_has_a_name(context):
     all_products = context.driver.find_elements(*ALL_PRODUCTS)
 
     for product in all_products:
-        assert product.find_element(*PRODUCT_NAME).is_displayed(), f'Product does not have a name'
-        assert product.find_element(*PRODUCT_IMAGE).is_displayed(), f'Product does not have an image'
+        assert product.find_element(*PRODUCT_NAME).is_displayed(), 'Product does not have a name'
+        assert product.find_element(*PRODUCT_IMAGE).is_displayed(), 'Product does not have an image'

@@ -4,8 +4,8 @@ from behave import given, when, then
 from time import sleep
 
 
-AMAZON_SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
-SEARCH_ICON = (By.ID, 'nav-search-submit-button')
+# AMAZON_SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
+# SEARCH_ICON = (By.ID, 'nav-search-submit-button')
 HAM_MENU = (By. ID, 'nav-hamburger-menu')
 FOOTER_LINKS = (By.CSS_SELECTOR, "table.navFooterMoreOnAmazon td.navFooterDescItem")
 SIGN_IN_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip a.nav-action-button')
@@ -14,17 +14,20 @@ ORDERS = (By.ID, 'nav-orders')
 
 @given('Open Amazon page')
 def open_amazon(context):
-    context.driver.get('https://www.amazon.com/')
+    # context.driver.get('https://www.amazon.com/')
+    context.app.main_page.open_main_url()
 
 
 @when('Input text {search_word}')
 def input_search_word(context, search_word):
-    context.driver.find_element(*AMAZON_SEARCH_FIELD).send_keys(search_word)
+    # context.driver.find_element(*AMAZON_SEARCH_FIELD).send_keys(search_word)
+    context.app.header.input_search_text(search_word)
 
 
 @when('Click on search button')
 def click_search(context):
-    context.driver.find_element(*SEARCH_ICON).click()
+    # context.driver.find_element(*SEARCH_ICON).click()
+    context.app.header.click_search()
 
 
 @when('Click on orders')
@@ -41,7 +44,7 @@ def click_signin(context):
 
 
 @when('Wait for {sec} seconds')
-def wait_for_sec(context,sec):
+def wait_for_sec(context, sec):
     sleep(int(sec))
 
 
@@ -75,9 +78,7 @@ def click_ham_menu(context):
 
 @then('Verify that footer has {expected_amount} links')
 def verify_footer_link_count(context, expected_amount):
-    #print('Original Type: ', type(expected_amount))
     expected_amount = int(expected_amount)
-    #print('Type after converting: ', type(expected_amount))
 
     footer_links = context.driver.find_elements(*FOOTER_LINKS)
     # print(footer_links)

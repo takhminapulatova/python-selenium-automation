@@ -9,7 +9,7 @@ from time import sleep
 HAM_MENU = (By. ID, 'nav-hamburger-menu')
 FOOTER_LINKS = (By.CSS_SELECTOR, "table.navFooterMoreOnAmazon td.navFooterDescItem")
 SIGN_IN_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip a.nav-action-button')
-ORDERS = (By.ID, 'nav-orders')
+# ORDERS = (By.ID, 'nav-orders')
 
 
 @given('Open Amazon page')
@@ -32,7 +32,8 @@ def click_search(context):
 
 @when('Click on orders')
 def click_on_orders(context):
-    context.driver.find_element(*ORDERS).click()
+    # context.driver.find_element(*ORDERS).click()
+    context.app.header.click_orders()
 
 
 @when('Click Sign In from popup')

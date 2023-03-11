@@ -21,6 +21,9 @@ class Page:
     def click(self, *locator):
         self.driver.find_element(*locator).click()
 
+    def element_is_displayed(self, *locator):
+        self.driver.find_element(*locator).is_displayed()
+
     def input_text(self, text, *locator):
         e = self.driver.find_element(*locator)
         e.clear()

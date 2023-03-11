@@ -1,9 +1,8 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 
 
-ADD_CART_BTN = (By.ID, 'add-to-cart-button')
+# ADD_CART_BTN = (By.ID, 'add-to-cart-button')
 COLOR_OPTIONS = (By.CSS_SELECTOR, "#variation_color_name li")
 CURRENT_COLOR = (By.CSS_SELECTOR, "#variation_color_name .selection")
 
@@ -15,7 +14,8 @@ def open_product(context, product_id):
 
 @when('Add the product to the cart')
 def add_the_product(context):
-    context.driver.wait.until(EC.element_to_be_clickable(ADD_CART_BTN)).click()
+    # context.driver.wait.until(EC.element_to_be_clickable(ADD_CART_BTN)).click()
+    context.app.product_page.click_add_to_cart()
 
 
 @then('Verify user can click through colors')

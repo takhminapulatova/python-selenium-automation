@@ -27,3 +27,8 @@ def verify_product_has_a_name(context):
     for product in all_products:
         assert product.find_element(*PRODUCT_NAME).is_displayed(), 'Product does not have a name'
         assert product.find_element(*PRODUCT_IMAGE).is_displayed(), 'Product does not have an image'
+
+
+@then('Verify {category} department is selected')
+def verify_selected_dept(context, category):
+    context.app.search_results_page.verify_selected_dept(category)

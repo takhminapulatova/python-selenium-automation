@@ -29,3 +29,10 @@ Feature: Amazon search tests
     And Input text Faust
     And Click on search button
     Then Verify audible department is selected
+
+  Scenario: User can select any department and search for an item
+    Given Open Amazon page
+    When Select "Amazon Fresh" department
+    And Input text Apples
+    And Click on search button
+    Then Verify that "Amazon Fresh" is selected

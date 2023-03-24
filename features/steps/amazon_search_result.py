@@ -32,3 +32,8 @@ def verify_product_has_a_name(context):
 @then('Verify {category} department is selected')
 def verify_selected_dept(context, category):
     context.app.search_results_page.verify_selected_dept(category)
+
+
+@then('Verify that "Amazon Fresh" is selected')
+def verify_amazon_fresh_selected(context):
+    context.app.search_results_page.verify_amazon_fresh_selected()

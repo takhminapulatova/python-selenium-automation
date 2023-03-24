@@ -6,6 +6,7 @@ class SearchResultsPage(Page):
     SEARCH_RESULT = (By.XPATH, "//span[@class='a-color-state a-text-bold']")
     FIRST_PRODUCT = (By.CSS_SELECTOR, "div[data-index='2'][data-component-id='18']")
     SUBNAV = (By.CSS_SELECTOR, "#nav-subnav[data-category='{CATEGORY}']")
+    AMAZON_FRESH_LOGO = (By.CSS_SELECTOR, "span [alt='Amazon Fresh Logo']")
 
     def get_subnav_locator(self, category):
         return [self.SUBNAV[0], self.SUBNAV[1].replace('{CATEGORY}', category)]
@@ -19,3 +20,7 @@ class SearchResultsPage(Page):
     def verify_selected_dept(self, category):
         locator = self.get_subnav_locator(category)
         self.wait_for_element_appear(*locator)
+
+    def verify_amazon_fresh_selected(self):
+        self.wait_for_element_appear(*self.AMAZON_FRESH_LOGO)
+

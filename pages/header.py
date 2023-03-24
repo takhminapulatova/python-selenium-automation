@@ -36,5 +36,9 @@ class Header(Page):
         select = Select(department_dd)
         select.select_by_value(f'search-alias={alias}')
 
+    def select_amazon_fresh_dept(self):
+        select = Select(self.find_element(*self.DEPARTMENT_SELECTION))
+        select.select_by_value('search-alias=amazonfresh')
+
     def verify_lang_shown(self):
         self.wait_for_element_appear(*self.SPANISH_LANG)

@@ -18,6 +18,11 @@ def add_the_product(context):
     context.app.product_page.click_add_to_cart()
 
 
+@when('Hover over New Arrivals')
+def hover_over_new_arrivals(context):
+    context.app.product_page.hover_over_new_arrivals()
+
+
 @then('Verify user can click through colors')
 def verify_user_can_select_colors(context):
     context.driver.find_element(*COLOR_OPTIONS).click()
@@ -48,3 +53,8 @@ def verify_user_can_select_any_color(context):
         actual_colors += [current_color]
 
     assert expected_colors == actual_colors, f'Expected {expected_colors}, but got {actual_colors}'
+
+
+@then('Verify that the user sees the deals')
+def verify_deals_are_visible(context):
+    context.app.product_page.verify_deals_are_visible()

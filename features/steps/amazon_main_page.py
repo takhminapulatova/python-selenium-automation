@@ -59,6 +59,11 @@ def select_department(context, alias):
     context.app.header.select_department(alias)
 
 
+@when('Select "Amazon Fresh" department')
+def select_amazon_fresh_dept(context):
+    context.app.header.select_amazon_fresh_dept()
+
+
 @then('Verify Sign in popup shown')
 def verify_signin_popup_visible(context):
     context.driver.wait.until(

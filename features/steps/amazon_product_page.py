@@ -3,8 +3,8 @@ from behave import given, when, then
 
 
 # ADD_CART_BTN = (By.ID, 'add-to-cart-button')
-COLOR_OPTIONS = (By.CSS_SELECTOR, "#variation_color_name li")
-CURRENT_COLOR = (By.CSS_SELECTOR, "#variation_color_name .selection")
+COLOR_OPTIONS = (By.CSS_SELECTOR, "li.slots-hidden")
+CURRENT_COLOR = (By.CSS_SELECTOR, ".inline-twister-dim-title-value")
 
 
 @given('Open Amazon product {product_id} page')
@@ -29,7 +29,7 @@ def verify_user_can_select_colors(context):
 
     all_color_options = context.driver.find_elements(*COLOR_OPTIONS)
     print('All colors: ', all_color_options)
-    expected_colors = ['Army Green', 'Black', 'Blue', 'Brown', 'Burgundy']
+    expected_colors = ['Black', 'Army Green', 'Blue', 'Brown', 'Burgundy']
 
     actual_colors = []
     for color in all_color_options[:5]:
